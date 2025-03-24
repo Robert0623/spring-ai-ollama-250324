@@ -33,7 +33,7 @@ public class HotelLoader {
         Integer count = jdbcClient.sql("select count(*) from hotel_vector")
                 .query(Integer.class)
                 .single();
-        System.out.println("No of Records in the PG Vector Store = " + count);
+        System.out.println("레코드 수 = " + count);
 
         if (count == 0) {
             List<Document> documents = Files.lines(resource.getFile().toPath())
@@ -46,6 +46,6 @@ public class HotelLoader {
                 vectorStore.add(splitteddocs); // 임베딩
             }
         }
-        System.out.println("Application is ready to Serve the Requests");
+        System.out.println("임베딩 완료");
     }
 }
