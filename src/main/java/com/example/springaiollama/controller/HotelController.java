@@ -34,12 +34,12 @@ public class HotelController {
 
         List<Document> results = vectorStore.similaritySearch(SearchRequest.builder()
                 .query(question)
-                .similarityThreshold(0.5)
+                .similarityThreshold(0.5) // 0 ~ 1, 유사도
                 .topK(1)
                 .build());
 
         System.out.println("results.size() = " + results.size());
-        System.out.println("results.get(0).toString() = " + results.get(0).toString());
+        results.stream().map(Document::toString).forEach(System.out::println);
 
         return chatClient.prompt()
                 .user(userSp -> userSp.text(resource)

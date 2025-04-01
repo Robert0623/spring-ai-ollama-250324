@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres
@@ -13,14 +16,20 @@ spring:
         options:
 #          model: llama3.3 # remote
 #          model: llama3.2 # local-1
-          model: exaone3.5 # local-2
+#          model: exaone3.5 # local-2
+          model: gemma3:4b # local-3
           temperature: 0.3
-#      embedding:
-#        options:
+      embedding:
+        options:
+#          model: llama3.3
+#          model: bge-m3 # ollama
+          model: bge-m3-ko-f16 # huggingface
 #          model: mxbai-embed-large # default
+#          model: exaone3.5
     vectorstore:
       pgvector:
         index-type: HNSW
+#        index-type: none
         distance-type: COSINE_DISTANCE
         dimensions: 1024 # ollama embedding model default - mxbai-embed-large
 #        dimensions: 8192 # llama 3.3 # remote
